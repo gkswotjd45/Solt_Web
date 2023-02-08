@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>두 수를 더하는 결과는?</h1>
+	<!-- 사용자 입력상자를 만들 꺼임 -->
+	<!-- action="http://127.0.0.1:8080/first/sum" 서블릿을 호출. method방식이 get이면 => doget 
+	post방식은 dopost메서드 명시 
+	form방식은 post방식 url로 수행하는것이 보편적
+	submit => 해당 버튼의 request방식으로 수행이 가능.
+	입력상자의 name을 반드시 줘야 함. 
+	 -->
+	<Form action="http://127.0.0.1:8080/first/sum" method="post">
+		<input type="text" name="myNum1">+ <input type="text" name="myNum2"> 
+		<br><br> 
+		<input type="submit" value="서버로 전송">
+	</Form>
+</body>
+</html>

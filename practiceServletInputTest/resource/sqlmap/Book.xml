@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+        PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN" 
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="example.myBook">
+
+	<select id="selectFindHashMap" parameterType="String" resultType="HashMap">
+		<!-- 여기에서 1줄 (1row)을 어디에 넣을 건지? -->
+			<![CDATA[
+			SELECT bisbn, btitle, bauthor, bprice 
+			FROM book
+			WHERE btitle like CONCAT('%',#{btitle},'%')
+		]]>
+	</select>
+
+
+</mapper>
+        

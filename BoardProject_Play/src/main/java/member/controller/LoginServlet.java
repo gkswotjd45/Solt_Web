@@ -89,24 +89,13 @@ public class LoginServlet extends HttpServlet {
 		
 		// 미리 선언하면 값이 있는지 없는지를 파악.
 		
-//		List<Board> list = null;
-//		
-//		if(result != null) {
-//			boardService bservice = new boardService();
-//			list = bservice.getAllBoard(); // 모든 글을 당겨오기 처리하는 메서드를 서비스 클래스에서 가져오기. .
-//		}
-//		
-
 		List<boardList> list = null;
 		
 		if(result != null) {
 			boardService bservice = new boardService();
 			list = bservice.getAllBoard(); // 모든 글을 당겨오기 처리하는 메서드를 서비스 클래스에서 가져오기. .
-			System.out.println(list);
-		}
-//		
-		
-		
+
+		}	
 	
 		// 3. 출력처리
 		if(result != null) {

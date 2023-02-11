@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import board.service.boardService;
 import board.vo.Board;
+import board.vo.boardList;
 import member.vo.Member;
 
 /**
@@ -36,10 +37,12 @@ public class boardServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		//RequestDispatcher dispatcher = request.getRequestDispatcher("newPost.jsp");
-		//request.getAttribute("member");
-		
-		//dispatcher.forward(request, response);
+
+		super.doGet(request, response);
+		// RequestDispatcher dispatcher = request.getRequestDispatcher("newPost.jsp");
+		// request.getAttribute("member");
+
+		// dispatcher.forward(request, response);
 
 	}
 
@@ -49,41 +52,43 @@ public class boardServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		
+		HttpSession session = request.getSession();
 		request.setCharacterEncoding("UTF-8");
-		request.getAttribute("member");
+		
 		String title = request.getParameter("postTitle");
 		String content = request.getParameter("postContent");
-		
-		
-		
-//		
-//		List<Board> list = null;
-//
-//		
-//		boardService bservice = new boardService();
-////		list = bservice.getAllBoard(); // 모든 글을 당겨오기 처리하는 메서드를 서비스 클래스에서 가져오기. .
-////		
-////		if(list != null) {
-////			response.sendRedirect("complete.html");
-////		}else {
-////			response.sendRedirect("loginFail.html");
-////		}
-////		
-//////		
+
+		String id = ((Member) session.getAttribute("member")).getMemberId();
+
+		System.out.println(title);
+		System.out.println(id);
+		System.out.println(content);
+
 		Board board = new Board();
 		board.setBoardTitle(title);
 		board.setBoardContent(content);
-//		board.setBoardAuthor(member.getMemberId());
-		
+		board.setBoardAuthor(id);
+
 		boardService service = new boardService();
+
+		int result = service.putPost(board); // 새글 저장하기
+
+		int num = board.getBoardNum(); // 게시글 번호 저장
+
 		
-	
-		int result = service.putPost(board);
+		if(result == 1) { // 새로운 게시글이 입력되었을 때. 리스트 다시 불러들여서 처음 리스트 나타내었던 곳으로 보여줌.
+		List<boardList> list = null;
+		boardService bservice = new boardService();
+		list = bservice.getAllBoard(); // 게시글 다시 출력하기.
+		request.setAttribute("board", list);
+		}
 		
-		if(result == 1) {
-			response.sendRedirect("complete.html");
-		}else {
+		
+		if (result == 1) {
+			RequestDispatcher dispatcher = request.getRequestDispatcher("loginSuccess.jsp");
+			dispatcher.forward(request, response);
+		} else {
 			response.sendRedirect("loginFail.html");
 		}
 

@@ -4,14 +4,12 @@
           "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
 <mapper namespace="myBoard">
-	
-	
-	<insert id="putContent" parameterType="Board" >
+
+	<insert id="putContent" parameterType="Board" useGeneratedKeys="true" keyProperty="boardNum" >
 	<![CDATA[ 	
 		INSERT INTO boards (boardTitle,boardAuthor,boardContent) 
-		VALUES(#{boardTitle},#{boardAuthor},#{boardContent})
+		VALUES(#{boardTitle}, #{boardAuthor}, #{boardContent})
 	]]>
 	</insert>
-
 </mapper>
           

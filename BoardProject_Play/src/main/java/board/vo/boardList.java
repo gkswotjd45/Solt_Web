@@ -11,6 +11,20 @@ public class boardList {
 	private int boardLike;
 	private String memberName;
 	
+	public boardList(int boardNum, String boardTitle, String boardContent, String boardAuthor, String boardDate,
+			int boardLike) {
+		super();
+		this.boardNum = boardNum;
+		this.boardTitle = boardTitle;
+		this.boardContent = boardContent;
+		this.boardAuthor = boardAuthor;
+		this.boardDate = boardDate;
+		this.boardLike = boardLike;
+	}
+	
+	public boardList() {
+		// TODO Auto-generated constructor stub
+	}
 	public String getMemberName() {
 		return memberName;
 	}
@@ -53,16 +67,7 @@ public class boardList {
 	public void setBoardLike(int boardLike) {
 		this.boardLike = boardLike;
 	}
-	public boardList(int boardNum, String boardTitle, String boardContent, String boardAuthor, String boardDate,
-			int boardLike) {
-		super();
-		this.boardNum = boardNum;
-		this.boardTitle = boardTitle;
-		this.boardContent = boardContent;
-		this.boardAuthor = boardAuthor;
-		this.boardDate = boardDate;
-		this.boardLike = boardLike;
-	}
+
 	
 	
 }

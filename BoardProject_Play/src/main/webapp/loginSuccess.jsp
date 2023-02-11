@@ -24,7 +24,7 @@
 			<th>글제목</th>
 			<th>글내용</th>
 			<th>글작성자</th>
-			<th>작성일</th>
+			<th>게시일</th>
 			<th>좋아요</th>
 		</thead>
 		<tbody>
@@ -38,9 +38,9 @@
 		<tr> <!-- 한 행  -->
 			<td><%= board.getBoardNum() %></td>
 			<td><a href="#"><%= board.getBoardTitle() %></a></td>
-			<td><%= board.getBoardAuthor() %></td>
+			<td><%= board.getBoardContent() %></td>
+			<td><%= board.getMemberName() %></td>
 			<td><%= board.getBoardDate() %></td>
-			<td>0</td>
 			<td><%= board.getBoardLike() %></td>
 		</tr>
 		<%

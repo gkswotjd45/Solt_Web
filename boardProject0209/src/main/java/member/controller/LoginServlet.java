@@ -1,6 +1,7 @@
 	package member.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import board.service.boardService;
+import board.vo.Board;
 import member.service.MemberService;
 import member.vo.Member;
 
@@ -81,8 +84,19 @@ public class LoginServlet extends HttpServlet {
 		// 만약 로그인이 실패하면, null을 리턴 받을 꺼임.
 		Member result = service.login(member);
 		// member라는 이름으로 세션을 vo자체로 저장시킴.
-		// 3. 출력처리
 		
+		// 미리 선언하면 값이 있는지 없는지를 파악.
+		
+		List<Board> list = null;
+		
+		if(result != null) {
+			boardService bservice = new boardService();
+			list = bservice.getAllBoard(); // 모든 글을 당겨오기 처리하는 메서드를 서비스 클래스에서 가져오기. .
+		}
+		
+		
+		
+		// 3. 출력처리
 		if(result != null) {
 			//로그인에 성공했어요.
 			
@@ -90,6 +104,9 @@ public class LoginServlet extends HttpServlet {
 			// 세션은 서블릿에서 처리.(서비스는 일반자바클래스 작업 불가)
 			HttpSession session = request.getSession(true);
 			session.setAttribute("member", result);
+			
+			
+//			session.setAttribute("boardList", list);// 게시글의 형태는 세션의 크기는 점점 커져 서버쪽에서 부담을 줌.
 			// 게시판 html페이지를 클라이언트에게 전송해요.
 			// jsp 그 실체가 Servlet이예요.
 			// html에서 -> servlet -> service -> dao -> service -> controller(이 servlet) -> JSp(다른 Servlet)에게 전달 -> client
@@ -101,8 +118,13 @@ public class LoginServlet extends HttpServlet {
 			// jsp로 전달 (프로그램적인 요소, "회원ID + 접속해 주셔서 감사합니다."
 			// 다음에 실행할 jsp가 이거다 라는 의미
 			
+			// jsp에게 리스트를 정보를 전달하기위해서는 세션 에서 보내는 형태 OR request방식으로 전달하는 방식이 존재.
+			request.setAttribute("boardList", list); // jsp에 잠깐 저장할 데이터 (1회성 데이터) 출력하기 위해서는 request 객체에 잠깐 붙여서 전달하는 방식이 효율적임.
+			
+			
 			dispatcher.forward(request, response); // jsp가 request, response을 가지고 =>클라이언트에게 전달 함. 
 			
+
 		
 		}else {
 			// 로그인에 실패한 거임.

@@ -23,6 +23,7 @@
 	 <!-- 별명 지정하는게 나와요! 타이핑 줄이기위해서 사용해요! 패키징 경로 설정을 확실하게 지정.-->
 	 <typeAliases>
 	 	<typeAlias type="member.vo.Member" alias="Member"/>
+	 	<typeAlias type="board.vo.Board" alias="Board"/>
 	 </typeAliases>
 
 	<!-- Database 연결 정보 선언 -->
@@ -56,7 +57,9 @@
 	
 	<!-- mapping된 SQL 구문이 있는 XML 파일에 대한 설정! (실제 sql문장이 들어 있는 xml파일)-->
 	<mappers>
+	<!-- 사용자 관련 쿼리만 담김 member.xml -->
 		<mapper resource="./sqlmap/member.xml"/>
+		<mapper resource="./sqlmap/Board.xml"/>
 	</mappers>
 
 

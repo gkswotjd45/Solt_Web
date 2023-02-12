@@ -11,5 +11,13 @@
 		VALUES(#{boardTitle}, #{boardAuthor}, #{boardContent})
 	]]>
 	</insert>
+	<select id="getCurrentPost" parameterType="Board" resultType="Board">
+	<![CDATA[ 
+		Select boardAuthor, boardNum, boardTitle, boardContent, boardDate, boardLike
+		from boards
+		where boardNum = #{boardNum}
+	]]>
+	</select>
+	
 </mapper>
           

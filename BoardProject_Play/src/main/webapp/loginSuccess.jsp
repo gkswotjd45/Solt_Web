@@ -1,3 +1,5 @@
+<%@page import="java.io.Console"%>
+<%@page import="org.apache.ibatis.reflection.SystemMetaObject"%>
 <%@page import="board.vo.boardList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -30,14 +32,14 @@
 		<tbody>
 		<% 
 		// request에서 데이터를 붙여서 출력하는 것이 가장 주요.
-		List<boardList> list = (List<boardList>)request.getAttribute("board");
+		List<boardList> list = (List<boardList>)request.getAttribute("AllList");
 		for(boardList board:list){
 			
 		%>
-		
 		<tr> <!-- 한 행  -->
 			<td><%= board.getBoardNum() %></td>
-			<td><a href="#"><%= board.getBoardTitle() %></a></td>
+			<td><% int index = board.getBoardNum();%>
+			<a href="/board/current?page=<%=index %>"> <%= board.getBoardTitle() %></a></td>
 			<td><%= board.getBoardContent() %></td>
 			<td><%= board.getMemberName() %></td>
 			<td><%= board.getBoardDate() %></td>

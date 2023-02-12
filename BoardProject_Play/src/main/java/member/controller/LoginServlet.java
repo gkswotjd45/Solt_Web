@@ -120,7 +120,7 @@ public class LoginServlet extends HttpServlet {
 			// 다음에 실행할 jsp가 이거다 라는 의미
 			
 			// jsp에게 리스트를 정보를 전달하기위해서는 세션 에서 보내는 형태 OR request방식으로 전달하는 방식이 존재.
-			request.setAttribute("board", list); // jsp에 잠깐 저장할 데이터 (1회성 데이터) 출력하기 위해서는 request 객체에 잠깐 붙여서 전달하는 방식이 효율적임.
+			request.setAttribute("AllList", list); // jsp에 잠깐 저장할 데이터 (1회성 데이터) 출력하기 위해서는 request 객체에 잠깐 붙여서 전달하는 방식이 효율적임.
 			
 			
 			dispatcher.forward(request, response); // jsp가 request, response을 가지고 =>클라이언트에게 전달 함. 

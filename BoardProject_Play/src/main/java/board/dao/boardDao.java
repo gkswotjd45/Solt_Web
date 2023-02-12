@@ -54,4 +54,13 @@ public class boardDao {
 
 	}
 
+	public Board getCurrentPost(Board board) {
+	
+		SqlSession sqlsession = MyBatisConnectionFactory.getSqlSessionFactory().openSession();
+		
+		Board post = sqlsession.selectOne("myBoard.getCurrentPost",board);
+		
+		return post;
+	}
+
 }

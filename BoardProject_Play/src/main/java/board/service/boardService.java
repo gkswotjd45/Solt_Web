@@ -24,4 +24,10 @@ public class boardService {
 		return result;
 	}
 
+	public Board getPost(Board board) {
+		boardDao dao = new boardDao();
+		Board post = dao.getCurrentPost(board);
+		return post;
+	}
+
 }

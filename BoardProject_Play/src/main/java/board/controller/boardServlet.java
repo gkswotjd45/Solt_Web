@@ -37,13 +37,7 @@ public class boardServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
 		super.doGet(request, response);
-		// RequestDispatcher dispatcher = request.getRequestDispatcher("newPost.jsp");
-		// request.getAttribute("member");
-
-		// dispatcher.forward(request, response);
-
 	}
 
 	/**
@@ -53,7 +47,7 @@ public class boardServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		HttpSession session = request.getSession();
+		HttpSession session = request.getSession(true);
 		request.setCharacterEncoding("UTF-8");
 		
 		String title = request.getParameter("postTitle");
@@ -81,7 +75,7 @@ public class boardServlet extends HttpServlet {
 		List<boardList> list = null;
 		boardService bservice = new boardService();
 		list = bservice.getAllBoard(); // 게시글 다시 출력하기.
-		request.setAttribute("board", list);
+		request.setAttribute("AllList", list);
 		}
 		
 		

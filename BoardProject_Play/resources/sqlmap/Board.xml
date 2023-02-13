@@ -11,6 +11,7 @@
 		VALUES(#{boardTitle}, #{boardAuthor}, #{boardContent})
 	]]>
 	</insert>
+	
 	<select id="getCurrentPost" parameterType="Board" resultType="Board">
 	<![CDATA[ 
 		Select boardAuthor, boardNum, boardTitle, boardContent, boardDate, boardLike
@@ -19,5 +20,11 @@
 	]]>
 	</select>
 	
+	<update id="modifyCurrentPost" parameterType="Board">
+	<![CDATA[ 
+		update boards set boardTitle=#{boardTitle}, boardContent = #{boardContent}
+		where boardNum = #{boardNum}
+	]]>
+	</update>
 </mapper>
           

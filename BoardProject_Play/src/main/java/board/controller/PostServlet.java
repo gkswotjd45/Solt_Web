@@ -20,7 +20,7 @@ import member.vo.Member;
 /**
  * Servlet implementation class PostServlet
  */
-@WebServlet("/current")
+@WebServlet("/current") // 현재 게시글 세부 내용
 public class PostServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -43,6 +43,8 @@ public class PostServlet extends HttpServlet {
 		//System.out.println(request.getParameter("page"));
 		String pageIndex = request.getParameter("page");
 		
+		request.setAttribute("pageIndex", pageIndex);
+		session.setAttribute("pageIndex", pageIndex); // pageIndex 값을 session에 전달.
 		Board board = new Board();
 		board.setBoardNum(Integer.parseInt(pageIndex));
 		
@@ -52,7 +54,8 @@ public class PostServlet extends HttpServlet {
 		
 		if(board != null) {
 		System.out.println(board.getBoardAuthor());
-		request.setAttribute("board", board);	
+		request.setAttribute("board", board);	// 게시글 1개를 requst으로 전달.
+		session.setAttribute("board", board);   // 게시글 1개를 session으로 전달.
 		RequestDispatcher dispatcher = request.getRequestDispatcher("currentPage.jsp");
 		dispatcher.forward(request, response);
 		

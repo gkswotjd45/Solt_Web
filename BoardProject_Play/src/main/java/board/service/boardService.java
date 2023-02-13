@@ -30,4 +30,10 @@ public class boardService {
 		return post;
 	}
 
+	public int modifyPost(Board board) {
+		boardDao dao = new boardDao();
+		int result = dao.modifyCurrentPost(board);
+		return result;
+	}
+
 }

@@ -55,12 +55,27 @@ public class boardDao {
 	}
 
 	public Board getCurrentPost(Board board) {
-	
+
 		SqlSession sqlsession = MyBatisConnectionFactory.getSqlSessionFactory().openSession();
-		
-		Board post = sqlsession.selectOne("myBoard.getCurrentPost",board);
-		
+
+		Board post = sqlsession.selectOne("myBoard.getCurrentPost", board);
+
 		return post;
+	}
+
+	public int modifyCurrentPost(Board board) {
+		int result = 0;
+		
+		SqlSession sqlsession = MyBatisConnectionFactory.getSqlSessionFactory().openSession();
+		try {
+			result = sqlsession.update("myBoard.modifyCurrentPost", board);
+		} catch (Exception e) {
+			// TODO: handle exception
+		} finally {
+			sqlsession.commit(); // update, delete 문은 커밋을 반드시 수행.
+			sqlsession.close();
+		}
+		return result;
 	}
 
 }

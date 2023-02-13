@@ -67,8 +67,6 @@ public class LoginServlet extends HttpServlet {
 		member.setMemberId(userID);
 		member.setMemberPw(userPw);
 		
-		
-		
 		// 입력받은 데이터로 VO를 생성해요.
 		// 원래는 데이터 베이슬 테이블을 기준으로 VO를 생성해야 하니 , 당연히 table이 있어야 함.
 		// 따라서 데이터 베이스 부터 스키마 부터 생성.

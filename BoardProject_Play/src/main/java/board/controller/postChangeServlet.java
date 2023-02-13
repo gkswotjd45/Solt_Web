@@ -50,7 +50,6 @@ public class postChangeServlet extends HttpServlet {
 		String content = request.getParameter("postContent"); // 
 		String pageIndex = (String) session.getAttribute("pageIndex");
 		
-		
 		Board board = new Board();
 		board.setBoardTitle(Title);
 		board.setBoardContent(content);
@@ -65,6 +64,7 @@ public class postChangeServlet extends HttpServlet {
 		if (result ==1) {
 			System.out.println("완료");
 			request.setAttribute("board", modfiy);
+			session.setAttribute("board", modfiy);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("currentPage.jsp");
 			dispatcher.forward(request, response);
 		

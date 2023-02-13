@@ -28,12 +28,6 @@ public class boardDao {
 		return list;
 	}
 
-//	public int newContent(Board board) {
-//		
-//		SqlSession sqlsession = MyBatisConnectionFactory.getSqlSessionFactory().openSession();
-//		int result = sqlsession.insert("myBoard.putContent",board);
-//		return result;
-//	}
 
 	public int newContent(Board board) {
 
@@ -72,8 +66,23 @@ public class boardDao {
 		} catch (Exception e) {
 			// TODO: handle exception
 		} finally {
-			sqlsession.commit(); // update, delete 문은 커밋을 반드시 수행.
-			sqlsession.close();
+	
+		}
+		return result;
+	}
+
+	public int deleteCurrentPost(Board board) {
+		int result = 0;
+		SqlSession sqlSession = MyBatisConnectionFactory.getSqlSessionFactory().openSession();
+		
+		try {
+			result = sqlSession.delete("myBoard.deleteCurrentPost", board);
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		} finally {
+			sqlSession.commit(); // update, delete 문은 커밋을 반드시 수행.
+			sqlSession.close();
 		}
 		return result;
 	}

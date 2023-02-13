@@ -1,11 +1,27 @@
 	package member.controller;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.Enumeration;
+import java.util.EventListener;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
+import javax.servlet.Filter;
+import javax.servlet.FilterRegistration;
 import javax.servlet.RequestDispatcher;
+import javax.servlet.Servlet;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.ServletRegistration;
+import javax.servlet.SessionCookieConfig;
+import javax.servlet.SessionTrackingMode;
+import javax.servlet.FilterRegistration.Dynamic;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.descriptor.JspConfigDescriptor;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -44,6 +60,9 @@ public class LoginServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		ServletContext application = request.getServletContext();
+		
+		
 		//서블릿은 mvc 패턴에서 컨트롤러 역할을 수행 (controller) 
 		// model view controller의 약자.
 		// model : 
@@ -116,11 +135,9 @@ public class LoginServlet extends HttpServlet {
 			//하나의 서블릿이 내가 다른 서블릿을 호출하기 위해서 사용하는 RequestDispatcher 임 따라서 = 뒤에는 jsp에 해당함. (다른 서블릿에 전달)
 			// jsp로 전달 (프로그램적인 요소, "회원ID + 접속해 주셔서 감사합니다."
 			// 다음에 실행할 jsp가 이거다 라는 의미
-			
+			//application.setAttribute("AllList", list); // 서블릿 context에 저장.
 			// jsp에게 리스트를 정보를 전달하기위해서는 세션 에서 보내는 형태 OR request방식으로 전달하는 방식이 존재.
 			request.setAttribute("AllList", list); // jsp에 잠깐 저장할 데이터 (1회성 데이터) 출력하기 위해서는 request 객체에 잠깐 붙여서 전달하는 방식이 효율적임.
-			
-			
 			dispatcher.forward(request, response); // jsp가 request, response을 가지고 =>클라이언트에게 전달 함. 
 			
 

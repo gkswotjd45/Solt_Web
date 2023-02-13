@@ -55,9 +55,9 @@ public class boardServlet extends HttpServlet {
 
 		String id = ((Member) session.getAttribute("member")).getMemberId();
 
-		System.out.println(title);
-		System.out.println(id);
-		System.out.println(content);
+//		System.out.println(title);
+//		System.out.println(id);
+//		System.out.println(content);
 
 		Board board = new Board();
 		board.setBoardTitle(title);

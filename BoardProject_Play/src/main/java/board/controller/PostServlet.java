@@ -38,8 +38,8 @@ public class PostServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 //		response.getWriter().append("Served at: ").append(request.getContextPath());
-		HttpSession session = request.getSession(true);
 		
+		HttpSession session = request.getSession(true);
 		//System.out.println(request.getParameter("page"));
 		String pageIndex = request.getParameter("page");
 		
@@ -53,10 +53,11 @@ public class PostServlet extends HttpServlet {
 		
 		
 		if(board != null) {
-		System.out.println(board.getBoardAuthor());
-		request.setAttribute("board", board);	// 게시글 1개를 requst으로 전달.
+		//System.out.println(board.getBoardAuthor());
+			
 		session.setAttribute("board", board);   // 게시글 1개를 session으로 전달.
 		RequestDispatcher dispatcher = request.getRequestDispatcher("currentPage.jsp");
+		request.setAttribute("board", board);	// 게시글 1개를 requst으로 전달.
 		dispatcher.forward(request, response);
 		
 		} else {

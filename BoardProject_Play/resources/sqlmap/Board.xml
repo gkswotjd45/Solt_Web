@@ -5,26 +5,34 @@
 
 <mapper namespace="myBoard">
 
-	<insert id="putContent" parameterType="Board" useGeneratedKeys="true" keyProperty="boardNum" >
+	<insert id="putContent" parameterType="Board"
+		useGeneratedKeys="true" keyProperty="boardNum">
 	<![CDATA[ 	
 		INSERT INTO boards (boardTitle,boardAuthor,boardContent) 
 		VALUES(#{boardTitle}, #{boardAuthor}, #{boardContent})
 	]]>
 	</insert>
-	
-	<select id="getCurrentPost" parameterType="Board" resultType="Board">
+
+	<select id="getCurrentPost" parameterType="Board"
+		resultType="Board">
 	<![CDATA[ 
 		Select boardAuthor, boardNum, boardTitle, boardContent, boardDate, boardLike
 		from boards
 		where boardNum = #{boardNum}
 	]]>
 	</select>
-	
-	<update id="modifyCurrentPost" parameterType="Board">
+
+	<update id="myBoard.modifyCurrentPost" parameterType="Board">
 	<![CDATA[ 
 		update boards set boardTitle=#{boardTitle}, boardContent = #{boardContent}
 		where boardNum = #{boardNum}
 	]]>
 	</update>
+
+	<delete id="deleteCurrentPost" parameterType="Board">
+		<![CDATA[ 
+		delete from boards where boardNum = #{boardNum}
+	]]>
+	</delete>
 </mapper>
           

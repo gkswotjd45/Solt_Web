@@ -36,4 +36,10 @@ public class boardService {
 		return result;
 	}
 
+	public int postDelete(Board board) {
+		boardDao dao = new boardDao();
+		int result = dao.deleteCurrentPost(board);
+		return result;
+	}
+
 }

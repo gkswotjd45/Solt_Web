@@ -66,7 +66,8 @@ public class boardDao {
 		} catch (Exception e) {
 			// TODO: handle exception
 		} finally {
-	
+			sqlsession.commit(); // update, delete 문은 커밋을 반드시 수행.
+			sqlsession.close();
 		}
 		return result;
 	}

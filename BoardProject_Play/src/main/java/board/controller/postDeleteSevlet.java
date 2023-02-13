@@ -63,7 +63,7 @@ public class postDeleteSevlet extends HttpServlet {
 			System.out.println("성공");
 			request.setAttribute("AllList",list); // 업데이트 한 리스트도 같이 전달.
 			dispatcher = request.getRequestDispatcher("loginSuccess.jsp");
-//			getServletContext().getInitParameter("context-param-name") ;
+
 			dispatcher.forward(request, response);
 		} else {
 			System.out.println("실패");

@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Enumeration;
 import java.util.EventListener;
 import java.util.List;
@@ -26,6 +28,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 
 import board.service.boardService;
 import board.vo.Board;
@@ -105,13 +108,14 @@ public class LoginServlet extends HttpServlet {
 		// member라는 이름으로 세션을 vo자체로 저장시킴.
 		
 		// 미리 선언하면 값이 있는지 없는지를 파악.
+		//List <boardList> reserveList = null;
 		
 		List<boardList> list = null;
-		
 		if(result != null) {
 			boardService bservice = new boardService();
 			list = bservice.getAllBoard(); // 모든 글을 당겨오기 처리하는 메서드를 서비스 클래스에서 가져오기. .
-
+//			reserveList = new ArrayList<>(list); // 역순으로 차례대로 보여주기
+//			Collections.reverse(reserveList);
 		}	
 	
 		// 3. 출력처리
@@ -137,7 +141,8 @@ public class LoginServlet extends HttpServlet {
 			// 다음에 실행할 jsp가 이거다 라는 의미
 			//application.setAttribute("AllList", list); // 서블릿 context에 저장.
 			// jsp에게 리스트를 정보를 전달하기위해서는 세션 에서 보내는 형태 OR request방식으로 전달하는 방식이 존재.
-			request.setAttribute("AllList", list); // jsp에 잠깐 저장할 데이터 (1회성 데이터) 출력하기 위해서는 request 객체에 잠깐 붙여서 전달하는 방식이 효율적임.
+			request.setAttribute("AllList", list); 
+//			request.setAttribute("AllList", reserveList); // jsp에 잠깐 저장할 데이터 (1회성 데이터) 출력하기 위해서는 request 객체에 잠깐 붙여서 전달하는 방식이 효율적임.
 			dispatcher.forward(request, response); // jsp가 request, response을 가지고 =>클라이언트에게 전달 함. 
 			
 

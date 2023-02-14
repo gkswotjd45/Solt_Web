@@ -9,6 +9,7 @@
 		<![CDATA[
 			SELECT boardNum, boardTitle, boardContent, memberName, boardDate, boardLike
 			FROM boards	inner join members on boards.boardAuthor = members.memberId
+			order by boardNum Desc
 		]]>
 	</select>
 

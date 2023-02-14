@@ -1,6 +1,7 @@
 package board.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,6 +15,7 @@ import com.mysql.cj.protocol.x.SyncFlushDeflaterOutputStream;
 
 import board.service.boardService;
 import board.vo.Board;
+import comment.vo.Comment;
 
 /**
  * Servlet implementation class postChangeServlet
@@ -50,8 +52,9 @@ public class postChangeServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		String Title = request.getParameter("postTitle"); // input에 입력한 값(postTitle)을 String 형태로 저장.
 		String content = request.getParameter("postContent"); // 
-		//String pageIndex = (String) request.getAttribute("pageIndex");
 		String pageIndex = (String) session.getAttribute("pageIndex");
+		
+		
 		
 //		System.out.println(pageIndex);
 //		System.out.println(Title);

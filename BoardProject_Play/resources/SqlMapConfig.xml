@@ -25,6 +25,7 @@
 	 	<typeAlias type="member.vo.Member" alias="Member"/>
 	 	<typeAlias type="board.vo.Board" alias="Board"/>
 	 	<typeAlias type="board.vo.boardList" alias="BoardList"/>
+	 	<typeAlias type="comment.vo.Comment" alias="Comment"/>
 	 </typeAliases>
 
 	<!-- Database 연결 정보 선언 -->
@@ -62,6 +63,7 @@
 		<mapper resource="./sqlmap/member.xml"/>
 		<mapper resource="./sqlmap/Board.xml"/>
 		<mapper resource="./sqlmap/BoardList.xml"/>
+		<mapper resource="./sqlmap/Comment.xml"/>
 	</mappers>
 
 

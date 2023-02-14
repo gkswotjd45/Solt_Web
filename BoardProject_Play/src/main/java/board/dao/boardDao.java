@@ -43,7 +43,6 @@ public class boardDao {
 			sqlsession.close();
 		}
 		// 세션이 갖고 있는 update 시킴.
-
 		return result;
 
 	}
@@ -57,6 +56,7 @@ public class boardDao {
 		return post;
 	}
 
+	
 	public int modifyCurrentPost(Board board) {
 		int result = 0;
 		

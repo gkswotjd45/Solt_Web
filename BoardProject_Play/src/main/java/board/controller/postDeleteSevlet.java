@@ -1,7 +1,9 @@
 package board.controller;
 
 import java.io.IOException;
+import java.util.Enumeration;
 import java.util.List;
+import java.util.logging.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -48,42 +50,60 @@ public class postDeleteSevlet extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession(true);
-		
-		System.out.println(session.getAttributeNames().toString());
+
+//		System.out.println(session.getAttributeNames().toString());
 		request.setCharacterEncoding("UTF-8");
-		Board board = (Board) session.getAttribute("post"); // 현재 게시글 받아오기.
-
-		boardService bservice = new boardService();
-		int result = bservice.postDelete(board); // 게시글 삭제하기
-		
-		List<boardList> list  =bservice.getAllBoard();
-		
-		RequestDispatcher dispatcher;
-		if (result == 1) {
-			System.out.println("성공");
-			request.setAttribute("AllList",list); // 업데이트 한 리스트도 같이 전달.
-			dispatcher = request.getRequestDispatcher("loginSuccess.jsp");
-
-			dispatcher.forward(request, response);
-		} else {
-			System.out.println("실패");
-			response.sendRedirect("loginFail.html");
-		}
-
-//		String postState = request.getParameter("postBoard");
-//		if (postState.equals("postModify")) {
-//			
-//			
-//			
-//			RequestDispatcher dispatcher = request.getRequestDispatcher("complete.html");
+//		Board board = (Board) session.getAttribute("board"); // 현재 게시글 받아오기.
+//
+//		boardService bservice = new boardService();
+//		int result = bservice.postDelete(board); // 게시글 삭제하기
+//		
+//		List<boardList> list  =bservice.getAllBoard();
+//		
+//		RequestDispatcher dispatcher;
+//		if (result == 1) {
+//			System.out.println("성공");
+//			request.setAttribute("AllList",list); // 업데이트 한 리스트도 같이 전달.
+//			dispatcher = request.getRequestDispatcher("loginSuccess.jsp");
+//
 //			dispatcher.forward(request, response);
-//		} else if (postState.equals("postDelete")) {
-//			
-//			
-//			
-//			RequestDispatcher dispatcher = request.getRequestDispatcher("loginFail.html");
-//			dispatcher.forward(request, response);
+//		} else {
+//			System.out.println("실패");
+//			response.sendRedirect("loginFail.html");
 //		}
+		String postState = request.getParameter("postBoard"); // 버튼의 상태 유무.
+		
+		Board board = (Board) session.getAttribute("board");
+		boardService bservice = new boardService();
+		
+		if (postState.equals("postDelete")) { // 삭제 버튼 누를 때. 수행 과정
+		
+			
+
+			int result = bservice.postDelete(board); // 게시글 삭제하기
+
+			List<boardList> list = bservice.getAllBoard();
+
+			RequestDispatcher dispatcher;
+			if (result == 1) {
+				System.out.println("성공");
+				request.setAttribute("AllList", list); // 업데이트 한 리스트도 같이 전달.
+				dispatcher = request.getRequestDispatcher("loginSuccess.jsp");
+
+				dispatcher.forward(request, response);
+			} else {
+				System.out.println("실패");
+				response.sendRedirect("loginFail.html");
+			}
+			
+		} else if (postState.equals("PostLike")) { // 좋아요 버튼 클릭시 수행 과정.
+			int like = Integer.parseInt(board.getBoardLike());
+			System.out.println(like);
+			board.setBoardLike(Integer.toString(like++)); // 좋아요 1 추가
+			// dao 작업 및 session 작업 수행.
+			bservice.modifyPost(board);
+			response.sendRedirect("complete.html");
+		}
 
 	}
 

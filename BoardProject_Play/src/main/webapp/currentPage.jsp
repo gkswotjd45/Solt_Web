@@ -7,6 +7,10 @@
 //Comment comm = (Comment)request.getAttribute("comment");
 Board board = (Board) request.getAttribute("board");
 Member member = (Member) session.getAttribute("member");
+List<Comment> list = (List<Comment>) session.getAttribute("Comment");
+
+int lastComment = (list.get(list.size() - 1)).getCommentNum();
+request.setAttribute("last", lastComment);
 %>
 <!DOCTYPE html>
 <html>
@@ -61,29 +65,38 @@ Member member = (Member) session.getAttribute("member");
 				<td>게시일</td>
 			</tr>
 			<%
-			List<Comment> list = (List<Comment>)session.getAttribute("Comment");
 			for (Comment comm : list) {
 			%>
 			<tr>
-				<td><%=comm.getCommentNum() %></td>
-				<td><%=comm.getCommentId() %></td>
-				<td><%= comm.getCommentContent() %></td>
-				<td><%= comm.getCommentDate() %></td>
+				<td><%=comm.getCommentNum()%></td>
+				<td><%=comm.getCommentId()%></td>
+				<td><%=comm.getCommentContent()%></td>
+				<td><%=comm.getCommentDate()%></td>
 
 				<%
-			if (comm.getCommentId().equals(member.getMemberId())) {
-			%>
-				<td>
+				if (comm.getCommentId().equals(member.getMemberId())) {
+				%>
+				<td height="10">
 					<button type="button" onclick="#">수정</button>
 					<button type="button" onclick="#">삭제</button>
 				</td>
-				<%
-			}
-				%>
+
 			</tr>
 			<%
+				}
 			}
 			%>
+			<!-- 마지막 번호 및 , 현재 접속자 이름, 입력 값 작성  -->
+			<tr>
+				<form action="commentInput" method="post">
+				<td><%=lastComment + 1%></td>
+				<td height="50"><%=member.getMemberName()%></td>
+				<td><textarea name="commentContent"cols="20" placeholder="댓글을 입력하세요."></textarea></td>
+				<td></td>
+				<td><button type="submit">입력</button></td>
+				</form>
+			</tr>
+
 		</tbody>
 	</table>
 </body>

@@ -3,12 +3,21 @@
           PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN" 
           "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="myCommentList">
-	<select id="getList" parameterType="Comment" resultType="Comment">
+	<select id="getList" parameterType="Comment"
+		resultType="Comment">
 <![CDATA[
 	SELECT boardNum, commentNum, commentId, commentContent, commentDate
 	from comments
 	where boardNum = #{boardNum}
 ]]>
 	</select>
+
+	<insert id="inputComment" parameterType="Comment">
+	<![CDATA[
+	INSERT INTO comments(boardNum, commentId, commentContent) 
+	VALUES(#{boardNum}, #{commentId}, #{commentContent})
+	
+	]]>
+	</insert>
 
 </mapper>       

@@ -14,4 +14,11 @@ public class CommentService {
 		return list;
 	}
 
+	public int inputComment(Comment comment) {
+		commentDao dao = new commentDao();
+		int result = dao.insert(comment);
+		
+		return result;
+	}
+
 }

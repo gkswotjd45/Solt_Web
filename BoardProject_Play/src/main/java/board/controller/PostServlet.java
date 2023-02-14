@@ -73,8 +73,7 @@ public class PostServlet extends HttpServlet {
 			if (comments != null) {
 				CommentService cservice = new CommentService();
 				commentlist = cservice.getAllList(comments); // 모든 글을 당겨오기 처리하는 메서드를 서비스 클래스에서 가져오기. .
-				
-	
+
 				if (commentlist != null) {
 					System.out.println("댓글 있음");
 
@@ -82,15 +81,15 @@ public class PostServlet extends HttpServlet {
 					session.setAttribute("Comment", commentlist);
 					RequestDispatcher dispatcher = request.getRequestDispatcher("currentPage.jsp");
 					dispatcher.forward(request, response);
-					
-					dispatcher= request.getRequestDispatcher("/postChange");
+
+					dispatcher = request.getRequestDispatcher("/postChange");
 					dispatcher.forward(request, response);
-				}else {
+				} else {
 					// 해당 댓글 목록이 없는 경우.
 					System.out.println("댓글이 없음");
 					response.sendRedirect("loginFail.html");
 				}
-			}else { // 해당 게시글이 없는 경우
+			} else { // 해당 게시글이 없는 경우
 				System.out.println("게시글이 없음");
 				response.sendRedirect("loginFail.html");
 			}

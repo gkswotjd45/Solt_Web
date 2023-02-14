@@ -19,6 +19,7 @@ import board.vo.Board;
 import board.vo.boardList;
 import comment.service.CommentService;
 import comment.vo.Comment;
+import comment.vo.CommentList;
 import member.vo.Member;
 
 /**
@@ -68,7 +69,11 @@ public class PostServlet extends HttpServlet {
 			comments.setBoardNum(Integer.parseInt(pageIndex));
 			// 해당 게시글에 맞는 댓글 테이블 불러오기
 
-			List<Comment> commentlist = null;
+			
+			
+			
+			
+			List<CommentList> commentlist = null;
 
 			if (comments != null) {
 				CommentService cservice = new CommentService();
@@ -78,7 +83,7 @@ public class PostServlet extends HttpServlet {
 					System.out.println("댓글 있음");
 
 //					request.setAttribute("Comment", commentlist);
-					session.setAttribute("Comment", commentlist);
+					session.setAttribute("CommentList", commentlist);
 					RequestDispatcher dispatcher = request.getRequestDispatcher("currentPage.jsp");
 					dispatcher.forward(request, response);
 
@@ -93,6 +98,45 @@ public class PostServlet extends HttpServlet {
 				System.out.println("게시글이 없음");
 				response.sendRedirect("loginFail.html");
 			}
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			//16.24 백업
+//			List<Comment> commentlist = null;
+//
+//			if (comments != null) {
+//				CommentService cservice = new CommentService();
+//				commentlist = cservice.getAllList(comments); // 모든 글을 당겨오기 처리하는 메서드를 서비스 클래스에서 가져오기. .
+//
+//				if (commentlist != null) {
+//					System.out.println("댓글 있음");
+//
+////					request.setAttribute("Comment", commentlist);
+//					session.setAttribute("Comment", commentlist);
+//					RequestDispatcher dispatcher = request.getRequestDispatcher("currentPage.jsp");
+//					dispatcher.forward(request, response);
+//
+//					dispatcher = request.getRequestDispatcher("/postChange");
+//					dispatcher.forward(request, response);
+//				} else {
+//					// 해당 댓글 목록이 없는 경우.
+//					System.out.println("댓글이 없음");
+//					response.sendRedirect("loginFail.html");
+//				}
+//			} else { // 해당 게시글이 없는 경우
+//				System.out.println("게시글이 없음");
+//				response.sendRedirect("loginFail.html");
+//			}
 		}
 	}
 

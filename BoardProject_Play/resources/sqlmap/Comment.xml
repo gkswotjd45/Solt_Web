@@ -16,7 +16,6 @@
 	<![CDATA[
 	INSERT INTO comments(boardNum, commentId, commentContent) 
 	VALUES(#{boardNum}, #{commentId}, #{commentContent})
-	
 	]]>
 	</insert>
 

@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 import board.vo.Board;
 import comment.service.CommentService;
 import comment.vo.Comment;
+import comment.vo.CommentList;
 import member.vo.Member;
 
 /**
@@ -69,10 +70,12 @@ public class CommentInputServlet extends HttpServlet {
 		CommentService cservice = new CommentService();
 		int result = cservice.inputComment(comment); // 댓글 삽입 수행
 		
+		
+
 		if (result == 1) {
-			List<Comment> commentlist = null;
+			List<CommentList> commentlist = null;
 			commentlist = cservice.getAllList(comment);
-			session.setAttribute("Comment", commentlist);
+			session.setAttribute("CommentList", commentlist);
 			request.setAttribute("board", board);
 			
 			RequestDispatcher dispatcher = request.getRequestDispatcher("currentPage.jsp");
@@ -82,6 +85,21 @@ public class CommentInputServlet extends HttpServlet {
 		}else {
 			response.sendRedirect("loginFail.html");
 		}
+		
+		
+//		if (result == 1) {
+//			List<Comment> commentlist = null;
+//			commentlist = cservice.getAllList(comment);
+//			session.setAttribute("Comment", commentlist);
+//			request.setAttribute("board", board);
+//			
+//			RequestDispatcher dispatcher = request.getRequestDispatcher("currentPage.jsp");
+//			dispatcher.forward(request, response);
+//			return;
+//
+//		}else {
+//			response.sendRedirect("loginFail.html");
+//		}
 
 	}
 

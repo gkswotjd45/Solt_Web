@@ -1,16 +1,15 @@
+<%@page import="comment.vo.CommentList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page
-	import="member.vo.Member, board.vo.Board,comment.vo.Comment, java.util.List"%>
+	import="member.vo.Member, board.vo.Board,comment.vo.Comment, java.util.List, comment.vo.CommentList"%>
 
 <%
 //Comment comm = (Comment)request.getAttribute("comment");
 Board board = (Board) request.getAttribute("board");
 Member member = (Member) session.getAttribute("member");
-List<Comment> list = (List<Comment>) session.getAttribute("Comment");
+List<CommentList> list = (List<CommentList>) session.getAttribute("CommentList");
 
-int lastComment = (list.get(list.size() - 1)).getCommentNum();
-request.setAttribute("last", lastComment);
 %>
 <!DOCTYPE html>
 <html>
@@ -59,17 +58,15 @@ request.setAttribute("last", lastComment);
 		</thead>
 		<tbody>
 			<tr>
-				<td>순번</td>
 				<td>작성자</td>
 				<td>내용</td>
 				<td>게시일</td>
 			</tr>
 			<%
-			for (Comment comm : list) {
+			for (CommentList comm : list) {
 			%>
 			<tr>
-				<td><%=comm.getCommentNum()%></td>
-				<td><%=comm.getCommentId()%></td>
+				<td><%=comm.getMemberName()%></td>
 				<td><%=comm.getCommentContent()%></td>
 				<td><%=comm.getCommentDate()%></td>
 
@@ -89,7 +86,6 @@ request.setAttribute("last", lastComment);
 			<!-- 마지막 번호 및 , 현재 접속자 이름, 입력 값 작성  -->
 			<tr>
 				<form action="commentInput" method="post">
-				<td><%=lastComment + 1%></td>
 				<td height="50"><%=member.getMemberName()%></td>
 				<td><textarea name="commentContent"cols="20" placeholder="댓글을 입력하세요."></textarea></td>
 				<td></td>

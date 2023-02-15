@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+          PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN" 
+          "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="myCommentAllList">
+	<select id="getList" resultType="CommentList">		
+		<![CDATA[
+		SELECT boardNum, commentNum, commentId, memberName, commentDate,commentContent
+		from comments inner join members on comments.commentId = members.memberId
+		where boardNum = #{boardNum}
+		order by commentDate
+		]]>
+	</select>
+
+</mapper>

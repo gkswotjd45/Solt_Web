@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+          PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN" 
+          "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="myBoard">
+
+	<insert id="putContent" parameterType="Board"
+		useGeneratedKeys="true" keyProperty="boardNum">
+	<![CDATA[ 	
+		INSERT INTO boards (boardTitle,boardAuthor,boardContent) 
+		VALUES(#{boardTitle}, #{boardAuthor}, #{boardContent})
+	]]>
+	</insert>
+
+	<select id="getCurrentPost" parameterType="Board"
+		resultType="Board">
+	<![CDATA[ 
+		Select boardAuthor, boardNum, boardTitle, boardContent, boardDate, boardLike
+		from boards
+		where boardNum = #{boardNum}
+	]]>
+	</select>
+
+	<update id="myBoard.modifyCurrentPost" parameterType="Board">
+	<![CDATA[ 
+		update boards set boardTitle=#{boardTitle}, boardContent = #{boardContent}
+		where boardNum = #{boardNum}
+	]]>
+	</update>
+
+	<delete id="deleteCurrentPost" parameterType="Board">
+		<![CDATA[ 
+		delete from boards where boardNum = #{boardNum}
+	]]>
+	</delete>
+</mapper>
+          

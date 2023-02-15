@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+          PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN" 
+          "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="myCommentList">
+	<select id="getList" parameterType="Comment"
+		resultType="Comment">
+<![CDATA[
+	SELECT boardNum, commentNum, commentId, commentContent, commentDate
+	from comments
+	where boardNum = #{boardNum}
+]]>
+	</select>
+
+	<insert id="inputComment" parameterType="Comment">
+	<![CDATA[
+	INSERT INTO comments(boardNum, commentId, commentContent) 
+	VALUES(#{boardNum}, #{commentId}, #{commentContent})
+	]]>
+	</insert>
+
+	<select id="getOne" parameterType="Comment" resultType="Comment">
+	<![CDATA[
+		SELECT boardNum, commentNum, commentId, commentContent, commentDate
+		from comments
+		where boardNum = #{boardNum} AND commentNum = #{commentNum}
+	]]>
+	</select>
+
+	<update id="updateComment"  parameterType="Comment">
+		<![CDATA[
+		update comments set commentContent=#{commentContent}
+		where boardNum = #{boardNum} and commentNum = #{commentNum}
+	]]>
+	</update>
+</mapper>       

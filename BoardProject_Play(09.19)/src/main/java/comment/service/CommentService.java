@@ -15,16 +15,12 @@ public class CommentService {
 		return list;
 	}
 	
-	
-
 	public int inputComment(Comment comment) {
 		commentDao dao = new commentDao();
 		int result = dao.insert(comment);
 		
 		return result;
 	}
-
-
 
 	public Comment getComment(Comment comment) {
 		
@@ -33,12 +29,19 @@ public class CommentService {
 		return comm;
 	}
 
-
-
 	public int updateComment(Comment comment) {
 		
 		commentDao dao = new commentDao();
 		int result = dao.updateComm(comment);
+		
+		return result;
+	}
+
+
+	public int commentDelete(Comment comment) {
+		commentDao dao = new commentDao();
+		
+		int result = dao.DeleteComm(comment);
 		
 		return result;
 	}

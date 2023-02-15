@@ -89,4 +89,21 @@ public class commentDao {
 		return result;
 	}
 
+	public int DeleteComm(Comment comment) {
+		
+		int result = 0;
+
+		SqlSession sqlsession = MyBatisConnectionFactory.getSqlSessionFactory().openSession();
+		try {
+			result = sqlsession.delete("myCommentList.deleteComment", comment);
+
+		} catch (Exception e) {
+			// TODO: handle exception
+		} finally {
+			sqlsession.commit();
+			sqlsession.close();
+		}
+		return result;
+	}
+
 }

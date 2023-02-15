@@ -73,11 +73,11 @@ List<CommentList> list = (List<CommentList>) session.getAttribute("CommentList")
 
 				<%
 				if (comm.getCommentId().equals(member.getMemberId())) {
-					int index = comm.getCommentNum();
+					int commentindex = comm.getCommentNum();
 				%>
 				<td height="10">
-					<button type="button" onclick="location.href='/board/commentModify?boardIndex=<%=board.getBoardNum()%>&Commentnum=<%=index%>'">수정</button>
-					<button type="submit">삭제</button>	
+					<button type="button" onclick="location.href='/board/commentModify?boardIndex=<%=board.getBoardNum()%>&Commentnum=<%=commentindex%>'">수정</button>
+					<button type="submit" name="commentDelete" value=<%= commentindex %>>삭제</button>	
 				</td>
 			</tr>
 			</form>

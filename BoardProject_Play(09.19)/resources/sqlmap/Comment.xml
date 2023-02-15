@@ -27,10 +27,16 @@
 	]]>
 	</select>
 
-	<update id="updateComment"  parameterType="Comment">
+	<update id="updateComment" parameterType="Comment">
 		<![CDATA[
 		update comments set commentContent=#{commentContent}
 		where boardNum = #{boardNum} and commentNum = #{commentNum}
 	]]>
 	</update>
+
+	<delete id="deleteComment" parameterType="Comment">
+		<![CDATA[
+		delete from comments where commentNum = #{commentNum}
+	]]>
+	</delete>
 </mapper>       

@@ -34,5 +34,13 @@
 		delete from boards where boardNum = #{boardNum}
 	]]>
 	</delete>
+	
+	<update id="myBoard.updateCommentBoard" parameterType="Board">
+	<![CDATA[ 
+		update boards set CommentCount=CommentCount + 1 
+		where boardNum = #{boardNum}
+	]]>
+	</update>
+	
 </mapper>
           

@@ -10,16 +10,18 @@ public class boardList {
 	private String boardDate;
 	private int boardLike;
 	private String memberName;
+	private int CommentCount; // 해당 게시글의 댓글 수
 	
 	public boardList(int boardNum, String boardTitle, String boardContent, String boardAuthor, String boardDate,
-			int boardLike) {
-		super();
+			int boardLike,int CommentCount) {
+
 		this.boardNum = boardNum;
 		this.boardTitle = boardTitle;
 		this.boardContent = boardContent;
 		this.boardAuthor = boardAuthor;
 		this.boardDate = boardDate;
 		this.boardLike = boardLike;
+		this.CommentCount = CommentCount;
 	}
 	
 	public boardList() {
@@ -68,6 +70,12 @@ public class boardList {
 		this.boardLike = boardLike;
 	}
 
-	
-	
+	public int getCommentCount() {
+		return CommentCount;
+	}
+
+	public void setCommentCount(int commentCount) {
+		CommentCount = commentCount;
+	}
+
 }

@@ -42,4 +42,11 @@ public class boardService {
 		return result;
 	}
 
+	public int boardUpdate(Board board) { // 댓글 추가시 해당 게시글 댓글 수증가.
+		boardDao dao = new boardDao();
+		int result = dao.updateBoardPost(board);
+		
+		return result;
+	}
+
 }

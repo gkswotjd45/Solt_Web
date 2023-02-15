@@ -26,6 +26,7 @@
 			<th>글제목</th>
 			<th>글내용</th>
 			<th>글작성자</th>
+			<th>댓글수</th>
 			<th>게시일</th>
 			<th>좋아요</th>
 		</thead>
@@ -42,6 +43,7 @@
 			<a href="/board/current?page=<%=index %>"> <%= board.getBoardTitle() %></a></td>
 			<td><%= board.getBoardContent() %></td>
 			<td><%= board.getMemberName() %></td>
+			<td><%= board.getCommentCount() %></td>
 			<td><%= board.getBoardDate() %></td>
 			<td><%= board.getBoardLike() %></td>
 		</tr>

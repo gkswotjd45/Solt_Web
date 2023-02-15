@@ -28,7 +28,6 @@ public class boardDao {
 		return list;
 	}
 
-
 	public int newContent(Board board) {
 
 		int result = 0; // 업데이트 받은 영향 받은 개수
@@ -56,10 +55,9 @@ public class boardDao {
 		return post;
 	}
 
-	
 	public int modifyCurrentPost(Board board) {
 		int result = 0;
-		
+
 		SqlSession sqlsession = MyBatisConnectionFactory.getSqlSessionFactory().openSession();
 		try {
 			result = sqlsession.update("myBoard.modifyCurrentPost", board);
@@ -75,15 +73,30 @@ public class boardDao {
 	public int deleteCurrentPost(Board board) {
 		int result = 0;
 		SqlSession sqlSession = MyBatisConnectionFactory.getSqlSessionFactory().openSession();
-		
+
 		try {
 			result = sqlSession.delete("myBoard.deleteCurrentPost", board);
-			
+
 		} catch (Exception e) {
 			// TODO: handle exception
 		} finally {
 			sqlSession.commit(); // update, delete 문은 커밋을 반드시 수행.
 			sqlSession.close();
+		}
+		return result;
+	}
+
+	public int updateBoardPost(Board board) { // 게시글 댓글 수 업데이트
+		int result = 0;
+
+		SqlSession sqlsession = MyBatisConnectionFactory.getSqlSessionFactory().openSession();
+		try {
+			result = sqlsession.update("myBoard.updateCommentBoard",board);
+		} catch (Exception e) {
+			// TODO: handle exception
+		} finally {
+			sqlsession.commit(); // update, delete 문은 커밋을 반드시 수행.
+			sqlsession.close();
 		}
 		return result;
 	}

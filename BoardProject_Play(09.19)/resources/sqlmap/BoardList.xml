@@ -7,9 +7,11 @@
 
 	<select id="getList" resultType="BoardList">		
 		<![CDATA[
-			SELECT boardNum, boardTitle, boardContent, memberName, boardDate, boardLike
-			FROM boards	inner join members on boards.boardAuthor = members.memberId
-			order by boardNum Desc
+		SELECT boards.boardNum, boards.boardTitle, boards.boardContent, members.memberName, boards.CommentCount, boards.boardDate, boards.boardLike
+		FROM boards inner join members on boards.boardAuthor = members.memberId 
+		inner join comments as C on C.boardNum = boards.boardNum
+    	GROUP BY boards.boardNum
+    	order by boards.boardDate DESC;
 		]]>
 	</select>
 

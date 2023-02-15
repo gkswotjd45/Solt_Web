@@ -10,7 +10,7 @@ public class Board {
 	private String boardAuthor;
 	private String boardDate; // sql에서는 datetime으로 잡음.
 	private String boardLike;
-	
+	private int CommentCount; // 댓글수
 
 
 	public Board() {
@@ -18,7 +18,7 @@ public class Board {
 	}
 
 	public Board(int boardNum, String boardTitle, String boardContent, String boardAuthor, String boardDate,
-			String boardLike) {
+			String boardLike, int CommentCount) {
 		super();
 		this.boardNum = boardNum;
 		this.boardTitle = boardTitle;
@@ -26,6 +26,15 @@ public class Board {
 		this.boardAuthor = boardAuthor;
 		this.boardDate = boardDate;
 		this.boardLike = boardLike;
+		this.CommentCount = CommentCount;
+	}
+
+	public int getCommentCount() {
+		return CommentCount;
+	}
+
+	public void setCommentCount(int commentCount) {
+		CommentCount = commentCount;
 	}
 
 	public int getBoardNum() {

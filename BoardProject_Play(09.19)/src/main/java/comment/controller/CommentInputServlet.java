@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import board.service.boardService;
 import board.vo.Board;
 import comment.service.CommentService;
 import comment.vo.Comment;
@@ -66,14 +67,20 @@ public class CommentInputServlet extends HttpServlet {
 		comment.setCommentContent(Content);
 		comment.setBoardNum(Integer.parseInt(pageIndex));
 		comment.setCommentId(currentId);
-
+		
+		
 		CommentService cservice = new CommentService();
 		int result = cservice.inputComment(comment); // 댓글 삽입 수행
 		
+		boardService bservice = new boardService();
+
 		
 
 		if (result == 1) {
-			List<CommentList> commentlist = null;
+			
+			int update = bservice.boardUpdate(board);//게시글의 댓글 수 증가.
+			
+			List<CommentList> commentlist = null; // 댓글 리스트를 업데이트
 			commentlist = cservice.getAllList(comment);
 			session.setAttribute("CommentList", commentlist);
 			request.setAttribute("board", board);

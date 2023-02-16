@@ -11,6 +11,9 @@ Board board = (Board) request.getAttribute("board");
 Member member = (Member) session.getAttribute("member");
 List<CommentList> list = (List<CommentList>) session.getAttribute("CommentList");
 
+String boardLike = board.getBoardLike();
+String memberId = member.getMemberId();
+int board_num = board.getBoardNum();
 %>
 <!DOCTYPE html>
 <html>
@@ -33,7 +36,7 @@ List<CommentList> list = (List<CommentList>) session.getAttribute("CommentList")
 			<br>
 			<li>게시일 :<%=board.getBoardDate()%></li>
 			<br>
-			<li>좋아요 :<%=board.getBoardLike()%></li>
+			<li>좋아요 :<%=boardLike%></li>
 			<br>
 			<%
 			if (member.getMemberId().equals(board.getBoardAuthor())) {
@@ -44,7 +47,15 @@ List<CommentList> list = (List<CommentList>) session.getAttribute("CommentList")
 			<%
 			} else {
 			%>
-			<button type="submit" name="postBoard" value="PostLike">좋아요</button>
+			
+			
+			<form id="likeform">	
+			<input id="mId" type="hidden" name="memberId" value ="<%=memberId%>">
+			<input id="bId" type="hidden" name="boardnum" value="<%=board_num%>"> <!-- 게시글 번호 전달 받음 -->
+			<input id="btnLike" type="button" value="Good" onclick="return like()">
+			<div id="like_result"></div>
+			</form>
+			<!-- <button type="submit" name="postBoard" value="PostLike">좋아요</button> -->
 			<%
 			}
 			%>
@@ -98,4 +109,39 @@ List<CommentList> list = (List<CommentList>) session.getAttribute("CommentList")
 		</tbody>
 	</table>
 </body>
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script>
+function like(){
+
+	  $.ajax({
+		    url: "boardLikeServlet",
+		    type: "POST",
+		    cache: false,
+		    dataType: "json",
+		    data:{ mid: $("#mId").val(),
+		    	   bid: $("#bId").val()
+		    	},
+ 		      //아이디가 like_form인 곳의 모든 정보를 가져와  파라미터 전송 형태(표준 쿼리형태)로 만들어줌
+		    success: 
+		    	function(data){   
+		    
+		    	//console.log(data); // 콘솔창 확인
+		    	var boardLike = '<%= boardLike %>'
+		    	var values = Object.values(data); // 객체안의 data의 result : "" 값을 반환.
+		    	if(values == 1){
+		    		alert("좋아요 추가되었습니다.");
+		    		$("#btnLike").prop('disabled', true);
+		    	}else {
+		    		alert("이미 반영되었습니다.");
+		    		$("#btnLike").prop('disabled', true);
+		    	}
+                $("#like_result").html(data.like);  //id값이 like_result인 html을 찾아서 data.like값으로 바꿔준다.
+		    },   
+		    error: 
+		    function (request, status, error){  
+		      alert("ajax실패")                  
+		    }
+		  });
+}
+</script>
 </html>

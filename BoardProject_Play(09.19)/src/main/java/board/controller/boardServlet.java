@@ -11,6 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonIOException;
+import com.google.gson.JsonObject;
+
 import board.service.boardService;
 import board.vo.Board;
 import board.vo.boardList;
@@ -83,7 +87,9 @@ public class boardServlet extends HttpServlet {
 		} else {
 			response.sendRedirect("loginFail.html");
 		}
+		
 
+		
 	}
 
 }

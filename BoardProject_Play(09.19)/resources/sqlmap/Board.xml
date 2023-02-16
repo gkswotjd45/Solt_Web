@@ -35,11 +35,18 @@
 	]]>
 	</delete>
 	
-	<update id="myBoard.updateCommentBoard" parameterType="Board">
+	<update id="updateCommentBoard" parameterType="Board"> 
 	<![CDATA[ 
 		update boards set CommentCount=CommentCount + 1 
 		where boardNum = #{boardNum}
 	]]>
+	</update>
+	
+	<update id="myBoard.updateLikeBoard" parameterType="Board">
+		<![CDATA[ 
+		update boards set boardLike = boardLike + 1
+		where boardNum = #{boardNum}
+		]]>
 	</update>
 	
 </mapper>

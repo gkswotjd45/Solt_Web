@@ -49,4 +49,10 @@ public class boardService {
 		return result;
 	}
 
+	public int setLikeUp(Board board) {
+		boardDao dao = new boardDao();
+		int result = dao.updateLike(board);
+		return result;
+	}
+
 }

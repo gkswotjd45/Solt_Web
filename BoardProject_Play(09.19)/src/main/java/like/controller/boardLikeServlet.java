@@ -14,6 +14,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
 import board.service.boardService;
+import board.vo.Board;
 import like.service.likeService;
 import like.vo.likeBoard;
 
@@ -55,6 +56,7 @@ public class boardLikeServlet extends HttpServlet {
 		String boardId = request.getParameter("bid");
 		likeBoard findlike = new likeBoard(); // 찾을 좋아요 VO
 		
+		Board board = new Board();
 //		likeBoard likeBoard = new likeBoard();
 		findlike.setLikememberId(memberId);
 		findlike.setLikeBoarderNum(Integer.parseInt(boardId)); // 현재 좋아요 했는지 찾기 위해 setter() 저장.
@@ -69,19 +71,35 @@ public class boardLikeServlet extends HttpServlet {
 		if(Objects.isNull(resultlike)) { // 검색했을 때 좋아요가 없으면 수행
 			result = cService.setLike(findlike); // 좋아요 테이블에 1추가 
 			System.out.println(result); // 결과값은 1로 반환
+			
+	
+			board.setBoardNum(Integer.parseInt(boardId));
+			
+			boardService bService = new boardService();
+			int likeUpdate = bService.setLikeUp(board); // 해당 게시글의 좋아요수 1개 증가.
+			board = bService.getPost(board);
+			if(likeUpdate == 1) {
+				System.out.println("게시글 좋아요 업데이트 됨");
+			}else {
+				System.out.println("게시글 좋아요업데이트 안됨");
+			}
+			
+			//게시글을 좋아요수 반영
 		}else {
 			System.out.println(result); // 만약 기존의 값이 있었다면 0으로 반환.
 		}
 		
+		String like =  board.getBoardLike(); // 반영된 좋아요 개수도 같이 가져오기
 		
 		Gson gson = new Gson();
 		
 		JsonObject jsonObject = new  JsonObject();
 		jsonObject.addProperty("result", result);
-		
-		
+		jsonObject.addProperty("likeCount", like); // 현재 게시글의 좋아요 총합.
+
 		String find = gson.toJson(jsonObject);
 		response.getWriter().write(find);
+
 	}
 
 }

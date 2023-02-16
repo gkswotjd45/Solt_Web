@@ -101,4 +101,19 @@ public class boardDao {
 		return result;
 	}
 
+	public int updateLike(Board board) { // 게시글 좋아요 추가.
+		int result = 0;
+
+		SqlSession sqlsession = MyBatisConnectionFactory.getSqlSessionFactory().openSession();
+		try {
+			result = sqlsession.update("myBoard.updateLikeBoard",board);
+		} catch (Exception e) {
+			// TODO: handle exception
+		} finally {
+			sqlsession.commit(); // update, delete 문은 커밋을 반드시 수행.
+			sqlsession.close();
+		}
+		return result;
+	}
+
 }

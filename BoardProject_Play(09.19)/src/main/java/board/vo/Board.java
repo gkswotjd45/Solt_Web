@@ -4,6 +4,8 @@ package board.vo;
 
 // board라는 테이블로 연결되어 있는 형태. 그래서 새로운 필드명을 생서아고자 하면, vo를 별도로 만들어서 생성하는 것이 좋음
 public class Board {
+
+
 	private int boardNum;
 	private String boardTitle;
 	private String boardContent;
@@ -84,5 +86,10 @@ public class Board {
 	public void setBoardLike(String boardLike) {
 		this.boardLike = boardLike;
 	}
-
+	@Override
+	public String toString() {
+		return "Board [boardNum=" + boardNum + ", boardTitle=" + boardTitle + ", boardContent=" + boardContent
+				+ ", boardAuthor=" + boardAuthor + ", boardDate=" + boardDate + ", boardLike=" + boardLike
+				+ ", CommentCount=" + CommentCount + "]";
+	}	
 }

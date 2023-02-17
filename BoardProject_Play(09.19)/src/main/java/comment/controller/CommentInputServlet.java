@@ -55,13 +55,16 @@ public class CommentInputServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 
 		String Content = request.getParameter("commentContent");
-		String pageIndex = (String) session.getAttribute("pageIndex");
 		String currentId = ((Member)session.getAttribute("member")).getMemberId();
-		Board board = (Board) session.getAttribute("board");
+		String pageIndex = (String) session.getAttribute("pageIndex");
 		
-		System.out.println(currentId);
-		System.out.println(Content);
-		System.out.println(pageIndex);
+		String boardIndex = (String) request.getParameter("boardNum");
+		
+		Board board = new Board();
+		board.setBoardNum(Integer.parseInt(boardIndex));
+		boardService bserService = new boardService();
+		board = bserService.getPost(board);
+
 		Comment comment = new Comment();
 
 		comment.setCommentContent(Content);
@@ -82,9 +85,9 @@ public class CommentInputServlet extends HttpServlet {
 			
 			List<CommentList> commentlist = null; // 댓글 리스트를 업데이트
 			commentlist = cservice.getAllList(comment);
-			session.setAttribute("CommentList", commentlist);
+			//session.setAttribute("CommentList", commentlist);
 			request.setAttribute("board", board);
-			
+			request.setAttribute("CommentList", commentlist);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("currentPage.jsp");
 			dispatcher.forward(request, response);
 			return;

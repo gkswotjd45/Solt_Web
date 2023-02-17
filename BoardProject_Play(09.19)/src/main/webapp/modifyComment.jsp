@@ -15,6 +15,8 @@ Member member = (Member)session.getAttribute("member");
 <body>
 	<h2>댓글 수정</h2>
 	<form action="commentModify" method="post">
+	<input type="hidden" name="boardNum" value ="<%=comment.getBoardNum()%>"> 
+	<input type="hidden" name="commentNum" value ="<%=comment.getCommentNum()%>"> 
 		<table border="1">
 			<thead>
 				<tr>해당 댓글

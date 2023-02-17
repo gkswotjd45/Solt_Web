@@ -2,6 +2,8 @@ package board.service;
 
 import java.util.List;
 
+import com.mysql.cj.protocol.x.ReusableOutputStream;
+
 import board.dao.boardDao;
 import board.vo.Board;
 import board.vo.boardList;
@@ -52,6 +54,13 @@ public class boardService {
 	public int setLikeUp(Board board) {
 		boardDao dao = new boardDao();
 		int result = dao.updateLike(board);
+		return result;
+	}
+
+	public int setPost(Board board) { // 댓글을 삭제시 해당 게시글 댓글 수 차감.
+		
+		boardDao dao = new boardDao();
+		int result = dao.deleteCommentBoard(board);
 		return result;
 	}
 

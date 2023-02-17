@@ -61,7 +61,7 @@ public class PostServlet extends HttpServlet {
 		if (board != null) {
 			// System.out.println(board.getBoardAuthor());
 
-			session.setAttribute("board", board); // 게시글 1개를 session으로 전달.
+			//session.setAttribute("board", board); // 게시글 1개를 session으로 전달.
 			request.setAttribute("board", board); // 게시글 1개를 requst으로 전달.
 
 			// 게시글이 정상적으로 호출이 되면 해당 게시글에 대한 댓글도 같이 가져오기
@@ -82,8 +82,8 @@ public class PostServlet extends HttpServlet {
 				if (commentlist != null) {
 					System.out.println("댓글 있음");
 
-//					request.setAttribute("Comment", commentlist);
-					session.setAttribute("CommentList", commentlist);
+					request.setAttribute("CommentList", commentlist);
+					//session.setAttribute("CommentList", commentlist);
 					RequestDispatcher dispatcher = request.getRequestDispatcher("currentPage.jsp");
 					dispatcher.forward(request, response);
 

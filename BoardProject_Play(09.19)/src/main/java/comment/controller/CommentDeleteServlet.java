@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import board.service.boardService;
 import board.vo.Board;
 import comment.service.CommentService;
 import comment.vo.Comment;
@@ -45,11 +46,13 @@ public class CommentDeleteServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session =  request.getSession(true);
 		String commentIndex = request.getParameter("commentDelete");
-		Board board = (Board) session.getAttribute("board");
-		System.out.println(commentIndex);
+		String boardIndex = request.getParameter("boardNum");
+		
+	
+		
 		Comment comment = new Comment();
 		comment.setCommentNum(Integer.parseInt(commentIndex));
-		
+		comment.setBoardNum(Integer.parseInt(boardIndex));
 		CommentService cService = new CommentService();
 		
 		int result = cService.commentDelete(comment); // 해당 댓글 삭제
@@ -57,10 +60,18 @@ public class CommentDeleteServlet extends HttpServlet {
 		if(result == 1) {
 			
 			List<CommentList> commentlist = null;
-			comment.setBoardNum(board.getBoardNum()); // 현재 게시글에 대한 댓글을 가져오기
-			commentlist = cService.getAllList(comment); // 댓글 게시글을 currentpage에 업데이트를 수행.
+			commentlist = cService.getAllList(comment);// 댓글 게시글을 currentpage에 업데이트를 수행.
 			
-			session.setAttribute("CommentList", commentlist);
+			
+			Board board = new Board();
+			board.setBoardNum(Integer.parseInt(boardIndex));
+			
+			boardService bService = new boardService();
+			int delete = bService.setPost(board);//게시글에 해당 댓글을 삭제.
+			
+			board = bService.getPost(board);
+			
+			request.setAttribute("CommentList", commentlist);
 			request.setAttribute("board",board);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("currentPage.jsp");
 			dispatcher.forward(request, response);

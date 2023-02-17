@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import board.service.boardService;
 import board.vo.Board;
 import comment.service.CommentService;
 import comment.vo.Comment;
@@ -52,7 +53,7 @@ public class CommentServlet extends HttpServlet {
 		//System.out.println(comment.getCommentContent());
 		
 		request.setAttribute("Comment", comment);
-		session.setAttribute("Comment", comment);
+		//session.setAttribute("Comment", comment);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("modifyComment.jsp");
 		dispatcher.forward(request, response);
 		
@@ -69,19 +70,31 @@ public class CommentServlet extends HttpServlet {
 		String CommentContent = request.getParameter("CommentContent");
 		System.out.println(CommentContent);
 		
-		Comment comment = (Comment) session.getAttribute("Comment");
+		String boardNum = request.getParameter("boardNum");
+		String commentNum = request.getParameter("commentNum");
+		
+		Comment comment = new Comment();
+		comment.setBoardNum(Integer.parseInt(boardNum));
+		comment.setCommentNum(Integer.parseInt(commentNum));
 		comment.setCommentContent(CommentContent);
+		
 		CommentService cService = new CommentService();
 		int result = cService.updateComment(comment); // 댓글 업데이트
 		
 		List<CommentList> commentlist = null;
 		commentlist = cService.getAllList(comment); // 댓글 업데이트 목록을 반영
 
+		Board board = new Board();
+		board.setBoardNum(Integer.parseInt(boardNum));
 		
-		Board board = (Board) session.getAttribute("board");
+		boardService bService = new boardService();
+		board = bService.getPost(board);
+		
 		if(result == 1) {
-			session.setAttribute("Comment", comment);
-			session.setAttribute("CommentList", commentlist);
+			request.setAttribute("Comment", comment);
+			//session.setAttribute("Comment", comment);
+			request.setAttribute("CommentList", commentlist);
+			//session.setAttribute("CommentList", commentlist);
 			request.setAttribute("board", board);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("currentPage.jsp");
 			dispatcher.forward(request, response);

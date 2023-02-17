@@ -1,5 +1,4 @@
 <%@page import="org.apache.ibatis.session.SqlSession"%>
-<%@page import="comment.vo.CommentList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page
@@ -9,7 +8,7 @@
 //Comment comm = (Comment)request.getAttribute("comment");
 Board board = (Board) request.getAttribute("board");
 Member member = (Member) session.getAttribute("member");
-List<CommentList> list = (List<CommentList>) session.getAttribute("CommentList");
+List<CommentList> list = (List<CommentList>) request.getAttribute("CommentList");
 
 String boardLike = board.getBoardLike();
 String memberId = member.getMemberId();
@@ -26,7 +25,7 @@ int board_num = board.getBoardNum();
 		<h3><%=board.getBoardNum()%>번 게시글 입니다.
 		</h3>
 		<ul>
-			<input type="hidden" name="boardNum" value ="<%=board.getBoardNum() %>">
+			<input type="hidden" name="boardNum" value="<%=board.getBoardNum()%>">
 			<li>작성자 ID: <%=board.getBoardAuthor()%>
 			</li>
 			<br>
@@ -81,6 +80,7 @@ int board_num = board.getBoardNum();
 			%>
 			<form action="commentDelete" method="post">
 			<tr>
+	
 				<td><%=comm.getMemberName()%></td>
 				<td><%=comm.getCommentContent()%></td>
 				<td><%=comm.getCommentDate()%></td>
@@ -89,6 +89,7 @@ int board_num = board.getBoardNum();
 				if (comm.getCommentId().equals(member.getMemberId())) {
 					int commentindex = comm.getCommentNum();
 				%>
+				<input type="hidden" name="boardNum" value="<%=board.getBoardNum()%>">
 				<td height="10">
 					<button type="button" onclick="location.href='/board/commentModify?boardIndex=<%=board.getBoardNum()%>&Commentnum=<%=commentindex%>'">수정</button>
 					<button type="submit" name="commentDelete" value=<%= commentindex %>>삭제</button>	
@@ -102,6 +103,7 @@ int board_num = board.getBoardNum();
 			<!-- 마지막 번호 및 , 현재 접속자 이름, 입력 값 작성  -->
 			<tr>
 				<form action="commentInput" method="post">
+				<input type="hidden" name="boardNum" value="<%=board.getBoardNum()%>">
 				<td height="50"><%=member.getMemberName()%></td>
 				<td><textarea name="commentContent"cols="20" placeholder="댓글을 입력하세요."></textarea></td>
 				<td></td>
@@ -132,14 +134,14 @@ function like(){
 		    	
 		    	if(data['result'] == 1){
 		    		alert("좋아요 추가되었습니다.");
-		    		$("#btnLike").prop('disabled', true);
+		    		$("#btnLike").prop('disabled', true); // 좋아요 누르면 다시 누르지 못하도록 가림.
 		    		$("#like_result").html('[좋아요: '+data['likeCount'] + ']');
 		    		//$("#like_result").html('모르겠다');
 		    	}else {
+		    		// 이미 좋아요 반영된 게시글이므로 안내창 띄우고
 		    		alert("이미 반영되었습니다.");
-		    		$("#btnLike").prop('disabled', true);
+		    		$("#btnLike").prop('disabled', true); // 버튼을 가림.
 		    	}
-                $("#like_result").html(data.like);  //id값이 like_result인 html을 찾아서 data.like값으로 바꿔준다.
 		    },   
 		    error: 
 		    function (request, status, error){  

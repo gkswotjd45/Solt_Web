@@ -26,6 +26,7 @@ int board_num = board.getBoardNum();
 		<h3><%=board.getBoardNum()%>번 게시글 입니다.
 		</h3>
 		<ul>
+			<input type="hidden" name="boardNum" value ="<%=board.getBoardNum() %>">
 			<li>작성자 ID: <%=board.getBoardAuthor()%>
 			</li>
 			<br>
@@ -35,12 +36,13 @@ int board_num = board.getBoardNum();
 			<li>글 내용:<%=board.getBoardContent()%></li>
 			<br>
 			<li>게시일 :<%=board.getBoardDate()%></li>
+			
 			<br>
 			<%
 			if (member.getMemberId().equals(board.getBoardAuthor())) {
 			%>
 			<span><button type="button"
-					onclick="location.href='modifyPage.jsp'">수정</button>
+					onclick="location.href='/board/postChange?boardIndex=<%=board.getBoardNum()%>'">수정</button>
 				<button type="submit" name="postBoard" value="postDelete">삭제</button></span>
 			<%
 			} else {

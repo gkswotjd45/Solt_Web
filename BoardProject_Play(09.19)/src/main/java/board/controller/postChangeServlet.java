@@ -33,13 +33,27 @@ public class postChangeServlet extends HttpServlet {
 	}
 
 	/**
+	 * @throws IOException 
+	 * @throws ServletException 
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession(true);
+		
+		String BoardNum = (String) request.getParameter("boardIndex");
+		
+		
+		Board board = new Board();
+		board.setBoardNum(Integer.parseInt(BoardNum));
+		
+		boardService bservice = new boardService();
+		board = bservice.getPost(board); // 현재 게시글 불러오기
+		
+		request.setAttribute("board", board);
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("modifyPage.jsp");
+		dispatcher.forward(request, response);
 	}
 
 	/**
@@ -74,7 +88,7 @@ public class postChangeServlet extends HttpServlet {
 		if (result ==1) {
 			System.out.println("완료");
 			request.setAttribute("board", modfiy);
-			session.setAttribute("board", modfiy);
+			//session.setAttribute("board", modfiy);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("currentPage.jsp");
 			dispatcher.forward(request, response);
 		

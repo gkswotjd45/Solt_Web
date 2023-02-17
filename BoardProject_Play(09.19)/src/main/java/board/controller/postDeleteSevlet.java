@@ -72,8 +72,11 @@ public class postDeleteSevlet extends HttpServlet {
 //			response.sendRedirect("loginFail.html");
 //		}
 		String postState = request.getParameter("postBoard"); // 버튼의 상태 유무.
+		String boardNume = (String) request.getParameter("boardNum");
 		
-		Board board = (Board) session.getAttribute("board");
+		Board board = new Board();
+		board.setBoardNum(Integer.parseInt(boardNume));
+
 		boardService bservice = new boardService();
 		
 		if (postState.equals("postDelete")) { // 삭제 버튼 누를 때. 수행 과정

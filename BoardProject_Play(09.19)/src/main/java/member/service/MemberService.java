@@ -17,4 +17,17 @@ public class MemberService {
 		return result;
 	}
 
+	public Member findId(Member member) {
+		MemberDao dao = new MemberDao();
+		Member user = dao.findId(member);
+		return user;
+	}
+
+	public int register(Member member) {
+		
+		MemberDao dao = new MemberDao();
+		int result =dao.register(member);
+		return result;
+	}
+
 }

@@ -10,5 +10,20 @@
 		WHERE memberId = #{memberId} and memberPw = #{memberPw}
 	]]>
 	</select>
+	
+	<select id="findId" parameterType="Member" resultType="Member">
+	<![CDATA[ 	
+		SELECT memberId
+		FROM members
+		WHERE memberId = #{memberId}
+	]]>
+	</select>
+	
+	<insert id="memberRegister" parameterType="Member">
+	<![CDATA[ 	
+		insert into members(memberId, memberName,memberPw) values(#{memberId},#{memberName},#{memberPw})
+	]]>
+	</insert>
+	
 </mapper>
           

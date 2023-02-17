@@ -30,4 +30,30 @@ public class MemberDao {
 		return result;
 	}
 
+	public Member findId(Member member) {
+		SqlSession sqlsession = MyBatisConnectionFactory.getSqlSessionFactory().openSession();
+		Member user = sqlsession.selectOne("myMember.findId", member);
+		
+		sqlsession.close();
+		return user;
+	}
+
+	public int register(Member member) {
+		
+		int result = 0;
+
+		SqlSession sqlsession = MyBatisConnectionFactory.getSqlSessionFactory().openSession();
+		try {
+			result = sqlsession.insert("myMember.memberRegister", member);
+
+		} catch (Exception e) {
+			// TODO: handle exception
+		} finally {
+			sqlsession.commit();
+			sqlsession.close();
+		}
+
+		return result;
+	}
+
 }

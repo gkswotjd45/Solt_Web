@@ -48,14 +48,14 @@ int board_num = board.getBoardNum();
 			%>
 			
 			
-			<form id="likeform">
-			<div id = likeDiv>
+
+
 			<input id="mId" type="hidden" name="memberId" value ="<%=memberId%>">
 			<input id="bId" type="hidden" name="boardnum" value="<%=board_num%>"> <!-- 게시글 번호 전달 받음 -->
 			<input id="btnLike" type="button" value="Good" onclick="return like()">
 			<div id="like_result"> [좋아요: <%=boardLike%>]</div>
-			</div>	
-			</form>
+
+	
 			
 			<!-- <button type="submit" name="postBoard" value="PostLike">좋아요</button> -->
 			<%

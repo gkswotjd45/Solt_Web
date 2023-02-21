@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!-- abstact는 생성자를 통해 객체를 못만듬 -->
+<!--  bean id="day" class="springIoc.sample4.AbstarctDay" -->
+
+<!-- 아까 선언한 팩토리 메서드를 통해서  객체를 생성하는 방법 수행. -->
+<bean id="day" class="springIoc.sample4.AbstarctDay" factory-method="getInstance"/>
+
+</beans>

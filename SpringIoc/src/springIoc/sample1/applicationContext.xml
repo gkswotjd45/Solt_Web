@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- 패키지명 . Impl(클래스명) => 특정 인터페이스로 구현한 클래스 의미 -->
+	<bean id="messageBean" class="springIoc.sample1.MessageBeanImpl"
+		scope="singleton">
+		<!-- bean id="messageBean" class="springIoc.sample1.MessageBeanImpl" scope="prototype" -->
+		<constructor-arg>
+			<value>딸기</value> <!-- 생성자에 딸기라는 값을 주어 생성자 수행 -->
+			<!-- 생성자 인자를 이용하여 해당 클래스를 가지고 만드세요. String은 primitive type으로 처리 -->
+		</constructor-arg>
+		<property name="cost">
+			<value>3000</value> <!-- int 형태이므로 value 형태 -->
+		</property>
+		<!-- scope="prototype"은 객체가 만들어지 않고, getBean()을 실행하면 자동으로 생성됨 -->
+	</bean>
+
+	<bean id="messageBean_1" class="springIoc.sample1.MessageBeanImpl">
+		<!-- default 생성자 bean에 해당 -->
+	</bean>
+	
+	<bean id="messageBean_2" class="springIoc.sample1.MessageBeanImpl">
+		<property name="cost">
+			<value>4000</value>
+		</property>
+	</bean>
+
+	<bean id="messageBean_3" class="springIoc.sample1.MessageBeanImpl">
+
+		<constructor-arg index="1" type="int" value="7000" /> <!-- type 을 명시 안해주면 자동적으로 casting 발생해서 수행. 그래서 명시를 해줘야 함. 또한 순서가 뒤바뀌면 자동적으로 
+			변환해줌 => 그래서 순서를 명시해줌 -->
+		<constructor-arg index="0" type="java.lang.String"
+			value="바나나" />
+		<!-- constructor-arg><value>바나나</value></constructor-arg -->
+		<!-- constructor-arg><value>7000</value></constructor-arg -->
+	</bean>
+</beans>

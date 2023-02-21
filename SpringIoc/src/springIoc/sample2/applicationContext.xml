@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<bean id="foo0" class="springIoc.sample2.Foo" scope="singleton"/>
+
+<bean id="foo1" class="springIoc.sample2.Foo" scope="singleton">
+<constructor-arg value="abc"></constructor-arg>
+</bean>
+
+<bean id="foo2" class="springIoc.sample2.Foo" scope="singleton">
+<constructor-arg index="0" value="abc" type="java.lang.String"></constructor-arg>
+<constructor-arg index="1" value="1000" type="int"></constructor-arg>
+</bean>
+
+<!-- Bar 기본생성자가 먼저 존재해야 함 -->
+<bean id="myBar" class="springIoc.sample2.Bar"></bean>
+<bean id="foo3" class="springIoc.sample2.Foo">
+	<constructor-arg ref="myBar"></constructor-arg>
+	<!-- value int, string 형태로만 가능,  reference을 객체에 명시하는 타임 => beanId 값명시.   -->
+</bean>
+</beans>

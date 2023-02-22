@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+<!-- annotation을 수행할려고 할때 가장 먼저 명시 -->
+<context:component-scan base-package="springIoc.anno.Sample2"></context:component-scan>
+
+<bean id="emp1" class="springIoc.anno.Sample2.Emp" p:name="홍길동" p:age="20"></bean>
+<!--  
+<bean id="enginer" class="springIoc.anno.Sample2.Engineer"></bean>
+-->
+
+<!-- constrouctor의 첫번째 인자로 => "개발 1팀" String a = new String("개발 1팀") -->
+ 
+<bean id="dept" class="java.lang.String" c:_0="개발1팀"/>
+</beans>

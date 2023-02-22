@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<bean id="consoleRef" class="springIoc.sample6.ConsoleOutput"></bean>
+	
+	<bean id="fileRef" class="springIoc.sample6.FileOutPut">
+	<!-- setter 방식  or 생성자 방식 으로 설정 -->
+	<constructor-arg value="c:/temp/test.txt"></constructor-arg>
+	
+	<property name="filePath"><value>c:/temp/test.txt</value></property>
+	
+	</bean>
+	
+	<!-- 일반적인  형태 -->
+	<bean id="fileRef_1" class="springIoc.sample6.FileOutPut" c:filePath="c:/temp/test.txt"> </bean>
+	
+	<!-- setter에 bean 객체가 들어가야 하므로 p:setter 메서드 이름 - ref  -->
+	<bean id="myBean" class="springIoc.sample6.MessageBeanImpl" c:name="홍길동" p:phone="01012345567" p:output-ref="fileRef"></bean>
+	<bean id="myBeanConsole" class="springIoc.sample6.MessageBeanImpl" c:name="신사임당" p:phone="01012344567" p:output-ref="consoleRef"></bean>
+</beans>

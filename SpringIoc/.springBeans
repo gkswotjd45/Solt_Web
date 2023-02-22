@@ -12,6 +12,11 @@
 		<config>src/springIoc/sample3/applicationContext.xml</config>
 		<config>src/springIoc/sample4/applicationContext.xml</config>
 		<config>src/springIoc/sample5/applicationContext.xml</config>
+		<config>src/springIoc/sample6/applicationContext.xml</config>
+		<config>src/springIoc/sample7/applicationContext.xml</config>
+		<config>src/springIoc/sample8/applicationContext.xml</config>
+		<config>src/springIoc/anno/Sample1/applicationContext.xml</config>
+		<config>src/springIoc/anno/Sample2/applicationContext.xml</config>
 	</configs>
 	<autoconfigs>
 	</autoconfigs>

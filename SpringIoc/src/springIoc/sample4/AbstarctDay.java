@@ -8,6 +8,7 @@ public abstract class AbstarctDay {
 
 	public abstract String dayInfo();
 	
+	// static 메서드는 instance 없이 호출이 가능.
 	// 특정 메서드를 이용해서 객체를 만들어 냄. => 원래 추상클래스에서는 객체 생성할 수 없음  
 	// 그래서 이걸  팩토리 메서드  통해  "객체를 만들수 있음"
 	public static AbstarctDay getInstance()  {

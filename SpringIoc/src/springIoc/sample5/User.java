@@ -5,13 +5,14 @@ public class User {
 	private String birth;
 	
 	public User() {
-		
+		System.out.println("default 생성자");
 	}
 	
 	public User(String name, String birth) {
 		super();
 		this.name = name;
 		this.birth = birth;
+		System.out.println("생성자" + name + "," + birth);
 	}
 
 	public String getName() {
@@ -21,6 +22,7 @@ public class User {
 
 	public void setName(String name) {
 		this.name = name;
+		System.out.println("set메서드" + name );
 	}
 
 	public String getBirth() {
@@ -28,7 +30,9 @@ public class User {
 	}
 
 	public void setBirth(String birth) {
+		
 		this.birth = birth;
+		System.out.println("set메서드" + birth);
 	}
 	
 	@Override

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- 자기가 의존성을 주입다는데 이름을 통해서 받음  이름은 코드의 data1을 찾아서 명시 -->
+	<!-- bean의 명시한 이름을 가지고 자동적으로 주입. if) bean id를 잘못 명시되지 않으면 자동적으로 호출받지 못함.
+	
+	결론, data1은 setter의 지역변수는 상관 없이 . TestBean의 필드명에 따라 매칭됨. 
+	
+	-->
+	<bean id="myObj" class="springIoc.sample8.TestBean" autowire="byName"> </bean>
+	<bean id="data1" class="springIoc.sample8.DataBean"></bean>
+	<bean id="data2" class="springIoc.sample8.DataBean"></bean>
+</beans>

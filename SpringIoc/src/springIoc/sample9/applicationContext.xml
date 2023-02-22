@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- 자기가 의존성을 주입다는데 타입을 통해서 받음  이름은 코드의 data1을 찾아서 명시 -->
+	<!-- 
+	data1의 데이터 타입인 DatatBean을 통해서 주입. 그러나 타입이 같은 bean이 여러 개로 명시되어 있어 해당 빈을 찾지 못함
+	[타입을 기반으로 주입방식이 기본 방식 임] 
+	=> 그럼 primary 속성을 명시하여 가장 먼저 해당 되는 bean을 먼저 가져옴.
+	-->
+	<bean id="myObj" class="springIoc.sample9.TestBean" autowire="byType"> </bean>
+	<bean id="data1" class="springIoc.sample9.DataBean" primary="true"></bean>
+	
+	<bean id="data2" class="springIoc.sample9.DataBean"></bean>
+
+</beans>

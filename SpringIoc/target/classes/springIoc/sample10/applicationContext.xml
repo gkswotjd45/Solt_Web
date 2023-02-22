@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- default-autowire="byName"은 Beans에 있는 bean들을 이름을 가지고 자동 주입을 수행.  -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+	default-autowire="byName"
+	>
+
+	<!-- 자기가 의존성을 주입다는데 타입을 통해서 받음  이름은 코드의 data1을 찾아서 명시 -->
+	<!-- 
+	생성자로 주입하게 되는데 타입을 가지고 주입하는 방식. 
+	autowire="no" 상위에 설정된 default auto-wire 방식을 수행하지 않고 진행.
+	
+	-->
+	<bean id="myObj" class="springIoc.sample10.TestBean" autowire="no"> </bean>
+	<bean id="data1" class="springIoc.sample10.DataBean" primary="true"></bean>
+	<bean id="data2" class="springIoc.sample10.DataBean"></bean>
+
+</beans>

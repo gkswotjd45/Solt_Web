@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>연산할 2개의 숫자를 입력하고 연산자를 선택하세요.!</h1>
+	<br>
+	<br>
+	<form action="/springWeb/calc.do" method="post">
+		<!-- 컨텍스트루트 부터 씀// 일반적으로 do 파일을 많이 쓰임 -->
+		<!-- html5의 기본 형식 : 속성 ="값" -->
+		<input type="number" name="firstNum" required="required">
+		<!-- 나중에 입력값이 없으면 전달할 수 없음. -->
+		<select name="operator">
+		<option value="plus">+</option>
+		<option value="minus">-</option>
+		<option value="mul">*</option>
+		<option value="div">/</option>
+		</select>
+		<input type="number" name="secondNum" required="required">
+		<br><br>
+		<input type="submit" value="계산하기">
+	</form>
+</body>
+</html>

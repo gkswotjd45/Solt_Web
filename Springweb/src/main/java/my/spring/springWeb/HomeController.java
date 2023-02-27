@@ -4,8 +4,8 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+//import org.slf4j.Logger;
+//import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class HomeController {
 
 	//특정 log을 찍을 수 있도록 하는 형태. // 매클래스마다 들고 다녀야 함.// 첫줄에 명시해야 함. logger을 이용해 출력.
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+//	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	//cf) sysout 안좋은 형태, 실제로 서비스를 할때는 무조건 log 작업을 남겨나야 함.
 	
 	
@@ -35,8 +35,8 @@ public class HomeController {
 
 	// handller는 모델 객체를 파라미터로 받을 수 있음. // 매개인자는 정해져 있지않아, 없어도 됨.// 따라서 나올수 인자를 application context에 의해 인젝션 됨.(주입)
 	public String home(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale); // 로그 찍음.
-		logger.debug("소리없는 아우성");
+//		logger.info("Welcome home! The client locale is {}.", locale); // 로그 찍음.
+//		logger.debug("소리없는 아우성");
 
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);

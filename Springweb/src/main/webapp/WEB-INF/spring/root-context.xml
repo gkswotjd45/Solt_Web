@@ -11,8 +11,7 @@
     <!-- Root Context: defines shared resources visible to all other web components -->
   
     <context:component-scan base-package="my.spring.springWeb">
-        <context:exclude-filter type="annotation"
-                                expression="org.springframework.stereotype.Controller" />
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
     </context:component-scan>
   
 </beans:beans>

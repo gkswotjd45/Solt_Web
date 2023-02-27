@@ -1,7 +1,7 @@
 package my.spring.springWeb.sample02;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+//import org.slf4j.Logger;
+//import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,7 +15,7 @@ import my.spring.springWeb.sample01.TestController03;
 @RequestMapping("calc.do")
 public class CalcController {
 	
-	private static final Logger logger = LoggerFactory.getLogger(TestController03.class);
+//	private static final Logger logger = LoggerFactory.getLogger(TestController03.class);
 	
 	@PostMapping //위의 url을 post 방식을 받는 메서드 (처리하는 핸들러) // 첫번째 숫자를 받음 // fristnum을 땡겨와서 num1 매핑시킴.
 	//@RequestParam("firstNum")int num1  if) num1(인자)과 fristNum 이름이 동일하면. =>  int firstNum 으로만 사용이 가능

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<!-- 사용자 정보가 있는 form 정보가 있는 html // 클라이언트가 맨처음 보는 화면 -->
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>회원정보를 입력하세요</h1>
+	<!-- get 방식은 해당 정보가 url에 (queryString) 형태로 전달 되므로, body에서  전송되지 않음.  -->
+	<form action="/springWeb/member1" method="post">
+		<input type="text" placeholder="이름을 입력하세요." name="Name" /><br> <input
+			type="text" placeholder="전화번호를 입력하세요." name="Phone" /><br> <input
+			type="text" placeholder="아이디를 입력하세요." name="id" /><br> <input
+			type="text" placeholder="패스워드를 입력하세요." name="password" /><br> <input
+			type="submit" value="서버로 전송!">
+	</form>
+	<br>
+	<br>
+	<form action="/springWeb/member2" method="post">
+		<input type="text" placeholder="이름을 입력하세요." name="Name" /><br> <input
+			type="text" placeholder="전화번호를 입력하세요." name="Phone" /><br> <input
+			type="text" placeholder="아이디를 입력하세요." name="id" /><br> <input
+			type="password" placeholder="패스워드를 입력하세요." name="password" /><br>
+		<input type="submit" value="서버로 전송!">
+	</form>
+
+	<br>
+	<br>
+	<form action="/springWeb/member3" method="post">
+		<input type="text" placeholder="이름을 입력하세요." name="Name" /><br> <input
+			type="text" placeholder="전화번호를 입력하세요." name="Phone" /><br> <input
+			type="text" placeholder="아이디를 입력하세요." name="id" /><br> <input
+			type="password" placeholder="패스워드를 입력하세요." name="password" /><br>
+		<input type="submit" value="서버로 전송!">
+	</form>
+
+	<br>
+	<br>
+	<form action="/springWeb/member4" method="post">
+		<input type="text" placeholder="이름을 입력하세요." name="Name" /><br> <input
+			type="text" placeholder="전화번호를 입력하세요." name="Phone" /><br> <input
+			type="text" placeholder="아이디를 입력하세요." name="id" /><br> <input
+			type="password" placeholder="패스워드를 입력하세요." name="password" /><br>
+			<input type="text" placeholder="주소를 입력하세요;" name="address"/><br>
+		<input type="submit" value="서버로 전송!">
+	</form>
+</body>
+</html>

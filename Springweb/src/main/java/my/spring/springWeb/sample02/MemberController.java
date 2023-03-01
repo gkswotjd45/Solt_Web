@@ -59,7 +59,7 @@ public class MemberController {
 //		public String myMethod3(@ModelAttribute Member vo) 
 	
 	public String myMethod3(@ModelAttribute (value="mem") Member vo) { 
-		//@ModelAttribute 클라잉너트가 vo를 만들고 model에 => ModelAttribute에 밀어 넣음 =>  자동으로 들어감 (ModelAttribute)) 그럼 key 값은 기본적으로 member
+		//@ModelAttribute 클라이언트가 vo를 만들고 model에 => ModelAttribute에 밀어 넣음 =>  자동으로 들어감 (ModelAttribute)) 그럼 key 값은 기본적으로 member
 		// 이지만, 임의로 key mem으로 변경.
 //		logger.debug(vo.toString()); //정말로 클라이언트가 보내준 데이터가 VO로 생성되었는지 확인이 가능 (클라이언크가 보내준 vo가 이렇게 받는지 확인)
 		

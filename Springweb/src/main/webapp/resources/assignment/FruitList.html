@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>상품목록</title>
+</head>
+<style>
+div {
+	display: inline-block;
+	width: 120px;
+	height: 120px;
+}
+
+img {
+	width: 100px;
+	height: 100px;
+}
+
+.shadow img {
+	transition: .5s ease;
+}
+
+.shadow img:hover {
+	box-shadow: 1px 1px #d9d9d9, 2px 2px #d9d9d9, 3px 3px #d9d9d9, 4px 4px
+		#d9d9d9, 5px 5px #d9d9d9, 6px 6px #d9d9d9;
+	transform: translateX(-3px);
+	transition: .5s ease;
+}
+</style>
+<body>
+	<h1>상품목록</h1>
+	<h2>원하는 상품의 이미지를 클릭해주세요.</h2>
+	<a href="/springWeb/Fruit?productName=Apple"><img
+		src="../images/apple.gif" style="width: 300px; height: 300px;"></a>
+	<a href="/springWeb/Fruit?productName=Banana"><img
+		src="../images/banana.jpg" style="width: 300px; height: 300px;"></a>
+	<a href="/springWeb/Fruit?productName=Halabong"><img
+		src="../images/halabong.jpg" style="width: 300px; height: 300px;"></a>
+
+	<!--  img name="apple" src="../images/apple.gif" style="width: 300px; height: 300px;"-->
+	<br><br><br>
+	<form action="/springWeb/fruitList" method="post"><input type="submit" value ="장바구니 초기화하기"></form>
+</body>
+</html>

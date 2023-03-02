@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>Test Link</h1>
+	<hr>
+	get방식으로 호출(reqest Header에 content type이 존재하지 않음.)
+	<a href="/springWeb/testController1">consumes의 content-type : application/json </a>
+	<!-- client type이 json 데이터만 받기. -->
+	<br><br>
+	post방식으로 호출 
+	<form action="/springWeb/testController2" method="post">
+		<input type="submit" value="consumes의 content-type : application/json">
+	</form>
+</body>
+</html>

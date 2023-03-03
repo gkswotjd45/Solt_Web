@@ -19,6 +19,13 @@
 		<log4j2.version>2.17.1</log4j2.version>
 	</properties>
 	<dependencies>
+		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>8.0.32</version>
+		</dependency>
+
 		<!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
 		<dependency>
 			<groupId>com.google.code.gson</groupId>
@@ -33,7 +40,7 @@
 			<scope>provided</scope>
 		</dependency>
 
-		<!-- Spring -->
+		<!-- Spring java을 연결하기 위한 dependency -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>

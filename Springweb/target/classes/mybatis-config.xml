@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration 
+          PUBLIC "-//mybatis.org/DTD Config 3.0//EN" 
+          "http://mybatis.org/dtd/mybatis-3-config.dtd" >
+<configuration>
+<!-- my 바티스 설정 파일 // 공장만들때 필요한 xml 파일 -->
+
+
+	 <settings>
+	 	 <!-- Data가 없을경우 NULL로 처리할 꺼예요! -->
+	 	<setting name="jdbcTypeForNull" value="NULL"/>
+	 	<!-- log4j와 mybaits 연동해서 쿼리문과 실행결과를 로그로 출력함  -->
+	 	<setting name="logImpl" value="LOG4J2"/>
+	 </settings>
+	 
+	 <!-- 별명지정하는게 나와요! 타이핑 줄이기위해서 사용해요! -->
+	 <typeAliases>
+	 	<!--  typeAlias type="vo.Member" alias="Member"/-->
+	 </typeAliases>
+
+</configuration>
